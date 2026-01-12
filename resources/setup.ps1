@@ -23,8 +23,9 @@ $packages = @(
 )
 
 foreach ($pkg in $packages) {
-    winget install --id $pkg -e --source winget
-    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    winget install --id $pkg -e --source winget --accept-package-agreements --accept-source-agreements
+    $code = $LASTEXITCODE
+    if ($code -ne 0 -and $code -ne 0x8A15002B) { exit $code }
 }
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
