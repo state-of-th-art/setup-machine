@@ -27,6 +27,20 @@ foreach ($pkg in $packages) {
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    $gitExe = Get-ChildItem -Path "${env:ProgramFiles}\Git\cmd\git.exe","${env:ProgramFiles(x86)}\Git\cmd\git.exe" `
+        -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($gitExe) {
+        $gitDir = Split-Path -Parent $gitExe.FullName
+        $env:PATH = "$gitDir;$env:PATH"
+    }
+}
+
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Error "git not on PATH yet. Close and reopen PowerShell, then re-run setup.ps1."
+    exit 1
+}
+
 git lfs install --skip-repo *> $null
 
 $personalDir = Join-Path $env:USERPROFILE "personal"
