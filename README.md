@@ -26,6 +26,36 @@ export DEV_ENV="$HOME/personal/dev"
 ./dev-env
 ```
 
+## Windows (native, winget)
+
+Open PowerShell and run:
+
+```powershell
+git clone <your-repo-url> $env:USERPROFILE\personal\dev
+cd $env:USERPROFILE\personal\dev
+$env:DEV_ENV = "$env:USERPROFILE\personal\dev"
+
+.\run.ps1 core
+.\run.ps1 node
+.\run.ps1 rust
+.\run.ps1 neovim
+.\run.ps1 tmux
+.\run.ps1 lazygit
+.\dev-env.ps1
+```
+
+Note: If PowerShell blocks script execution, run:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+Windows quick start (new machine):
+
+```powershell
+iwr -UseBasicParsing https://raw.githubusercontent.com/state-of-th-art/setup-machine/main/resources/setup.ps1 | iex
+```
+
 ## Neovim LSP install
 
 LSP servers are managed by `mason.nvim`. After first launch:
