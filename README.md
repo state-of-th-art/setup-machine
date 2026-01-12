@@ -3,7 +3,7 @@
 ## Quick start (new machine)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CHANGE_ME/setup-machine/main/resources/setup | bash
+curl -fsSL https://raw.githubusercontent.com/state-of-th-art/setup-machine/main/resources/setup | bash
 ```
 
 Notes:

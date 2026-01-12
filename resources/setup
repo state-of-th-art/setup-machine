@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-REPO_URL="${REPO_URL_OVERRIDE:-CHANGE_ME_REPO_URL}"
-if [[ "$REPO_URL" == "CHANGE_ME_REPO_URL" ]]; then
+REPO_URL="${REPO_URL_OVERRIDE:-https://github.com/state-of-th-art/setup-machine.git}"
+if [[ -z "$REPO_URL" ]]; then
   echo "Set REPO_URL_OVERRIDE to your setup repo URL or edit resources/setup"; exit 1
 fi
 
