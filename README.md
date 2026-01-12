@@ -53,7 +53,7 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 Windows quick start (new machine):
 
 ```powershell
-iwr -UseBasicParsing https://raw.githubusercontent.com/state-of-th-art/setup-machine/main/resources/setup.ps1 | iex
+powershell -ExecutionPolicy Bypass -NoProfile -Command "iwr -UseBasicParsing https://raw.githubusercontent.com/state-of-th-art/setup-machine/main/resources/setup.ps1 | iex"
 ```
 
 ## Neovim LSP install

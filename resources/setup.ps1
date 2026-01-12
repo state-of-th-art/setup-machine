@@ -4,6 +4,8 @@ param(
     [string]$RepoUrlOverride = ""
 )
 
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
 $repoUrl = if ($RepoUrlOverride) {
     $RepoUrlOverride
 } elseif ($env:REPO_URL_OVERRIDE) {
@@ -57,10 +59,13 @@ if (-not (Test-Path $devDir)) {
 Set-Location $devDir
 $env:DEV_ENV = $devDir
 
-.\run.ps1 core
-.\run.ps1 node
-.\run.ps1 rust
-.\run.ps1 neovim
-.\run.ps1 tmux
-.\run.ps1 lazygit
-.\dev-env.ps1
+$ps = (Get-Command powershell -ErrorAction SilentlyContinue).Source
+if (-not $ps) { $ps = "powershell" }
+
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 core
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 node
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 rust
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 neovim
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 tmux
+& $ps -ExecutionPolicy Bypass -File .\run.ps1 lazygit
+& $ps -ExecutionPolicy Bypass -File .\dev-env.ps1
