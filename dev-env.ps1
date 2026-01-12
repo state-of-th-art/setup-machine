@@ -52,16 +52,16 @@ function Sync-Dir {
     }
 }
 
-$home = $env:USERPROFILE
+$userHome = $env:USERPROFILE
 $xdgConfigHome = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { $env:LOCALAPPDATA }
 
-Update-Dir -Source (Join-Path $env:DEV_ENV "env/.local") -Destination (Join-Path $home ".local")
+Update-Dir -Source (Join-Path $env:DEV_ENV "env/.local") -Destination (Join-Path $userHome ".local")
 
 if (-not $Dry) {
-    New-Item -ItemType Directory -Path (Join-Path $home ".local/bin") -Force | Out-Null
-    New-Item -ItemType Directory -Path (Join-Path $home ".local/scripts") -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $userHome ".local/bin") -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $userHome ".local/scripts") -Force | Out-Null
 } else {
-    Write-Log "mkdir -p $home/.local/bin $home/.local/scripts"
+    Write-Log "mkdir -p $userHome/.local/bin $userHome/.local/scripts"
 }
 
 Sync-Dir -Source (Join-Path $env:DEV_ENV "env/.config/lazygit") `
