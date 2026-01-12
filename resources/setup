@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -e
+
+REPO_URL="${REPO_URL_OVERRIDE:-CHANGE_ME_REPO_URL}"
+if [[ "$REPO_URL" == "CHANGE_ME_REPO_URL" ]]; then
+  echo "Set REPO_URL_OVERRIDE to your setup repo URL or edit resources/setup"; exit 1
+fi
+
+sudo apt -y update
+
+if ! command -v git >/dev/null 2>&1; then
+  sudo apt -y install git
+fi
+
+if ! command -v git-lfs >/dev/null 2>&1; then
+  sudo apt -y install git-lfs
+fi
+
+# Ensure LFS hooks/filters are configured for the current user.
+git lfs install --skip-repo >/dev/null 2>&1 || true
+
+if ! command -v curl >/dev/null 2>&1; then
+  sudo apt -y install curl
+fi
+
+mkdir -p "$HOME/personal"
+if [ ! -d "$HOME/personal/dev" ]; then
+  git clone "$REPO_URL" "$HOME/personal/dev"
+fi
+
+cd "$HOME/personal/dev"
+export DEV_ENV="$HOME/personal/dev"
+
+./run core
+./run node
+./run rust
+./run neovim
+./run tmux
+./run lazygit
+./dev-env

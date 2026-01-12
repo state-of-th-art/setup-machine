@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+sudo apt update -y
+sudo apt install -y build-essential git git-lfs curl unzip ripgrep fd-find fzf pkg-config ca-certificates
+
+# Ensure LFS hooks/filters are configured for the current user.
+git lfs install --skip-repo >/dev/null 2>&1 || true

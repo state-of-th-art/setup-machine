@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+sudo apt update -y
+sudo apt install -y python3-venv curl tar
+
+NVIM_URL="${NVIM_URL:-https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz}"
+ARCHIVE="$(basename "$NVIM_URL")"
+
+tmp_dir=$(mktemp -d)
+trap 'rm -rf "$tmp_dir"' EXIT
+
+pushd "$tmp_dir" >/dev/null
+curl -LO "$NVIM_URL"
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf "$ARCHIVE"
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+popd >/dev/null
