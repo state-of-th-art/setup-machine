@@ -30,7 +30,7 @@ foreach ($pkg in $packages) {
 git lfs install --skip-repo *> $null
 
 $personalDir = Join-Path $env:USERPROFILE "personal"
-$devDir = Join-Path $personalDir "dev"
+$devDir = Join-Path $personalDir "setup-machine"
 if (-not (Test-Path $personalDir)) {
     New-Item -ItemType Directory -Path $personalDir | Out-Null
 }

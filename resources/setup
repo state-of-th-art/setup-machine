@@ -24,12 +24,12 @@ if ! command -v curl >/dev/null 2>&1; then
 fi
 
 mkdir -p "$HOME/personal"
-if [ ! -d "$HOME/personal/dev" ]; then
-  git clone "$REPO_URL" "$HOME/personal/dev"
+if [ ! -d "$HOME/personal/setup-machine" ]; then
+  git clone "$REPO_URL" "$HOME/personal/setup-machine"
 fi
 
-cd "$HOME/personal/dev"
-export DEV_ENV="$HOME/personal/dev"
+cd "$HOME/personal/setup-machine"
+export DEV_ENV="$HOME/personal/setup-machine"
 
 ./run core
 ./run node

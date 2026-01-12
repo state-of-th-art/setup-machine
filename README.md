@@ -8,14 +8,14 @@ curl -fsSL https://raw.githubusercontent.com/state-of-th-art/setup-machine/main/
 
 Notes:
 - If you use a different repo URL, set `REPO_URL_OVERRIDE` before running the script.
-- The setup script clones this repo to `~/personal/dev`, runs `./run <tool>` scripts, and then applies dotfiles via `./dev-env`.
+- The setup script clones this repo to `~/personal/setup-machine`, runs `./run <tool>` scripts, and then applies dotfiles via `./dev-env`.
 
 ## Manual setup
 
 ```bash
-git clone <your-repo-url> ~/personal/dev
-cd ~/personal/dev
-export DEV_ENV="$HOME/personal/dev"
+git clone <your-repo-url> ~/personal/setup-machine
+cd ~/personal/setup-machine
+export DEV_ENV="$HOME/personal/setup-machine"
 
 ./run core
 ./run node
@@ -31,9 +31,9 @@ export DEV_ENV="$HOME/personal/dev"
 Open PowerShell and run:
 
 ```powershell
-git clone <your-repo-url> $env:USERPROFILE\personal\dev
-cd $env:USERPROFILE\personal\dev
-$env:DEV_ENV = "$env:USERPROFILE\personal\dev"
+git clone <your-repo-url> $env:USERPROFILE\personal\setup-machine
+cd $env:USERPROFILE\personal\setup-machine
+$env:DEV_ENV = "$env:USERPROFILE\personal\setup-machine"
 
 .\run.ps1 core
 .\run.ps1 node
