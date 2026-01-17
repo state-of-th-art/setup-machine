@@ -83,6 +83,16 @@ api.nvim_create_autocmd("ColorScheme", {
 -- Filetype-specific settings
 local filetype_group = api.nvim_create_augroup("CustomFileType", { clear = true })
 
+-- psql temp files from \e should use SQL filetype
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = filetype_group,
+  pattern = { "psql.edit.*", "*.psql" },
+  callback = function()
+    vim.bo.filetype = "sql"
+  end,
+  desc = "Detect SQL filetype for psql edit buffers"
+})
+
 -- -- Markdown settings
 api.nvim_create_autocmd("FileType", {
   group = filetype_group,

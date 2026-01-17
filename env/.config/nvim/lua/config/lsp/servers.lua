@@ -8,6 +8,7 @@ M.list = {
   "ts_ls",
   "tailwindcss",
   "elmls",
+  "sqls",
 }
 
 M.overrides = {
