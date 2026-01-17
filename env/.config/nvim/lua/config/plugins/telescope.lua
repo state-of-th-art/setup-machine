@@ -9,7 +9,8 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
     },
     config = function()
-      require("telescope").setup {
+      local telescope = require("telescope")
+      telescope.setup {
         extensions = {
           fzf = {
             fuzzy = true,                   -- false will only do exact matching
@@ -179,6 +180,9 @@ return {
           prompt_title = "",
         }
       }
+
+      telescope.load_extension("fzf")
+      telescope.load_extension("file_browser")
 
       local builtin = require("telescope.builtin")
       -- Find operations
