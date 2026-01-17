@@ -10,6 +10,7 @@ return {
     },
     config = function()
       local telescope = require("telescope")
+      local actions = require("telescope.actions")
       telescope.setup {
         extensions = {
           fzf = {
@@ -137,6 +138,14 @@ return {
           }
         },
         defaults = {
+          mappings = {
+            i = {
+              ["<C-Space>"] = actions.to_fuzzy_refine,
+            },
+            n = {
+              ["<C-Space>"] = actions.to_fuzzy_refine,
+            },
+          },
           file_ignore_patterns = { "%.png$", "%.jpg$" },
           -- Path display options
           path_display = {
@@ -194,6 +203,12 @@ return {
       vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find References" })
       vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find Word" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find by Grep" })
+      vim.keymap.set("n", "<leader>fG", function()
+        builtin.grep_string({
+          only_sort_text = true,
+          search = "",
+        })
+      end, { desc = "Find by Fuzzy Grep" })
       vim.keymap.set("n", "<leader>fe", function()
         builtin.diagnostics({ severity = vim.diagnostic.severity.ERROR })
       end, { desc = "Find Errors" })
