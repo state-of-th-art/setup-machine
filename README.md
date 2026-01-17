@@ -26,6 +26,14 @@ export DEV_ENV="$HOME/personal/setup-machine"
 ./dev-env
 ```
 
+## Neovim config sync
+
+```bash
+./run nvim-config-sync
+```
+
+This copies the Neovim config from `env/.config/nvim` in this repo to `~/.config/nvim`.
+
 ## Windows (native, winget)
 
 Open PowerShell and run:

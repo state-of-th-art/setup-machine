@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+: "${DEV_ENV:?env var DEV_ENV needs to be present}"
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+
+src="$DEV_ENV/env/.config/nvim"
+dest="$XDG_CONFIG_HOME/nvim"
+
+if [[ ! -d "$src" ]]; then
+    echo "missing nvim config at $src"
+    exit 1
+fi
+
+rm -rf "$dest"
+mkdir -p "$XDG_CONFIG_HOME"
+cp -r "$src" "$dest"
