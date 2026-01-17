@@ -35,20 +35,16 @@ git clone <your-repo-url> $env:USERPROFILE\personal\setup-machine
 cd $env:USERPROFILE\personal\setup-machine
 $env:DEV_ENV = "$env:USERPROFILE\personal\setup-machine"
 
-.\run.ps1 core
-.\run.ps1 node
-.\run.ps1 rust
-.\run.ps1 neovim
-.\run.ps1 tmux
-.\run.ps1 lazygit
-.\dev-env.ps1
+powershell -ExecutionPolicy Bypass -File .\run.ps1 core
+powershell -ExecutionPolicy Bypass -File .\run.ps1 node
+powershell -ExecutionPolicy Bypass -File .\run.ps1 rust
+powershell -ExecutionPolicy Bypass -File .\run.ps1 neovim
+powershell -ExecutionPolicy Bypass -File .\run.ps1 tmux
+powershell -ExecutionPolicy Bypass -File .\run.ps1 lazygit
+powershell -ExecutionPolicy Bypass -File .\dev-env.ps1
 ```
 
-Note: If PowerShell blocks script execution, run:
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-```
+Note: The commands above use `-ExecutionPolicy Bypass` so you do not need to change system policy.
 
 Windows quick start (new machine):
 
