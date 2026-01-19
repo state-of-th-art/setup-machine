@@ -12,6 +12,9 @@ M.list = {
 }
 
 M.overrides = {
+  postgres_lsp = {
+    cmd = { "postgres-language-server", "lsp-proxy" },
+  },
   tailwindcss = {
     filetypes = { "html", "elm", "typescriptreact", "javascriptreact" },
     init_options = {
